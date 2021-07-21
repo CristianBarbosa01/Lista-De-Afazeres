@@ -1,0 +1,77 @@
+html {
+  background-color: #f2eee2;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "roboto", sans-serif;
+  color: #eaecef;
+}
+
+header {
+  padding: 30px;
+  background: #011627;
+  height: 10px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  text-align: center;
+}
+
+.sidenav {
+  width: 200px;
+  background: #011627;
+  position: absolute;
+  height: 80vh;
+  padding: 0 30px;
+  left: -100%;
+  transition: all 1s;
+}
+
+.sidenav.active {
+  left: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style-type: none;
+  margin: 10px 0;
+}
+
+ul li a {
+  color: #eaecef;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+ul li a:hover,
+ul li a.active {
+  background: #172b4d;
+}
+
+.imagem {
+  max-height: 400px;
+  max-width: 500px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #b0bac3;
+  color: #000;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
