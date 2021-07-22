@@ -1,9 +1,12 @@
-const Navbar = () => {
+import ("../App.css")
+
+const Navbar = ({ show }) => {
     return (
-        <div className="sidenav">
+        <div className={show ? 'sidenav active' : 'sidenav'}>
             <ul>
                 <li>
-                    <a href="/">Lista de atividades</a>
+                    <a href="/">Home</a>
+                    <a href="/Lista">Lista de atividades</a>
                 </li>
             </ul>
         </div>

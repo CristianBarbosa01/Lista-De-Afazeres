@@ -21,11 +21,15 @@ header {
   text-align: center;
 }
 
+header svg {
+  font-size: 30px;
+}
+
 .sidenav {
   width: 200px;
   background: #011627;
   position: absolute;
-  height: 80vh;
+  height: 85vh;
   padding: 0 30px;
   left: -100%;
   transition: all 1s;
