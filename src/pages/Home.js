@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import bloco from "../image/bloco.png";
 
 const Home = () => {
-    return(
-        <div style={{ display: "flex", justifyContent: "center" }}>
-        <img src={bloco} className="imagem"></img>
-      </div>
-    )
-}
+  const [modalLogin, setModalLogin] = useState(false);
 
-export default Home
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <img src={bloco} className="imagem"></img>
+    </div>
+  );
+};
+
+export default Home;

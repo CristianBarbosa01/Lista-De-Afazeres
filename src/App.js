@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Lista from "./pages/Lista";
 import { FaBars } from "react-icons/fa";
+import ModalLog from "./pages/LoginForm";
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -23,6 +24,7 @@ function App() {
         <Switch>
           <Route path="/" exact={true} component={Home} />
           <Route path="/Lista" exact={true} component={Lista} />
+          <Route path="/Login" exact={true} component={ModalLog} />
         </Switch>
       </Router>
 
