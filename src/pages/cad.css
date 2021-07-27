@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
 
-.center {
+.center2 {
   position: absolute;
   width: 400px;
   background: #fff;
@@ -8,9 +8,9 @@
   border-radius: 10px;
 }
 
-.center h1 {
+.center2 h1 {
   font-size: 2em;
-  border-left: 5px solid dodgerblue;
+  border-left: 5px solid rgb(36, 218, 51);
   padding: 10px;
   color: #000;
   letter-spacing: 5px;
@@ -19,14 +19,14 @@
   padding-left: 10px;
 }
 
-.center .inputbox {
+.center2 .inputbox2 {
   position: relative;
   width: 300px;
   height: 50px;
   margin-bottom: 50px;
 }
 
-.center .inputbox input {
+.center2 .inputbox2 input {
   position: absolute;
   top: 0;
   left: 0;
@@ -39,11 +39,11 @@
   font-size: 1.2em;
 }
 
-.center .inputbox:last-child {
+.center2 .inputbox2:last-child {
   margin-bottom: 0;
 }
 
-.center .inputbox span {
+.center2 .inputbox2 span {
   position: absolute;
   top: 14px;
   left: 20px;
@@ -52,19 +52,21 @@
   font-family: sans-serif;
 }
 
-.center .inputbox input:focus ~ span,
-.center .inputbox input:valid ~ span {
+.center2 .inputbox2 input:focus ~ span,
+.center2 .inputbox2 input:valid ~ span {
   transform: translateX(-13px) translateY(-35px);
   font-size: 1em;
 }
 
-.center .inputbox [type="button"] {
+.center2 .inputbox2 [type="button"] {
   width: 50%;
-  background: dodgerblue;
+  background: rgb(36, 218, 51);
   color: #fff;
   border: #fff;
 }
 
-.center .inputbox:hover [type="button"] {
-  background: linear-gradient(45deg, rgb(14, 63, 197), dodgerblue);
+.center2 .inputbox2:hover [type="button"] {
+  background: linear-gradient(45deg, rgb(40, 192, 73), rgb(36, 218, 51));
 }
+
+

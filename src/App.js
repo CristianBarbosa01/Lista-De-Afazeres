@@ -6,8 +6,10 @@ import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Lista from "./pages/Lista";
-import { FaBars } from "react-icons/fa";
 import ModalLog from "./pages/LoginForm";
+import Cadastro from "./pages/Cadastro";
+
+import { FaBars } from "react-icons/fa";
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -25,6 +27,7 @@ function App() {
           <Route path="/" exact={true} component={Home} />
           <Route path="/Lista" exact={true} component={Lista} />
           <Route path="/Login" exact={true} component={ModalLog} />
+          <Route path="/Cadastro" exact={true} component={Cadastro} />
         </Switch>
       </Router>
 

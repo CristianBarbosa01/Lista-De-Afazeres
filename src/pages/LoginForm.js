@@ -1,5 +1,3 @@
-import bloco from "../image/bloco.png";
-
 import("./Log.css");
 
 const LoginForm = () => {
@@ -14,14 +12,14 @@ const LoginForm = () => {
           </div>
           <div style={{marginLeft:"20px"}} className="inputbox">
             <input type="password" required="required"></input>
-            <span>Password</span>
+            <span>senha</span>
           </div>
           <div style={{marginLeft:"20px"}} className="inputbox">
             <input type="button" value="submit"></input>
           </div>
           <div style={{marginLeft:"20px"}}>
             <p>
-              Não tem conta?  <a href="/"> Crie uma!</a>
+              Não tem conta?  <a href="/Cadastro"> Crie uma!</a>
             </p>
           </div>
         </form>
