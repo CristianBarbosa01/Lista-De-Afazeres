@@ -6,6 +6,7 @@
   background: #fff;
   margin: 20px;
   border-radius: 10px;
+  padding-bottom: 10px;
 }
 
 .center2 h1 {
@@ -58,14 +59,14 @@
   font-size: 1em;
 }
 
-.center2 .inputbox2 [type="button"] {
+.center2 .inputbox2 [type="submit"] {
   width: 50%;
   background: rgb(36, 218, 51);
   color: #fff;
   border: #fff;
 }
 
-.center2 .inputbox2:hover [type="button"] {
+.center2 .inputbox2:hover [type="submit"] {
   background: linear-gradient(45deg, rgb(40, 192, 73), rgb(36, 218, 51));
 }
 

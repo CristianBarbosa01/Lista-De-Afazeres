@@ -12,10 +12,10 @@ const LoginForm = () => {
           </div>
           <div style={{marginLeft:"20px"}} className="inputbox">
             <input type="password" required="required"></input>
-            <span>senha</span>
+            <span>Senha</span>
           </div>
           <div style={{marginLeft:"20px"}} className="inputbox">
-            <input type="button" value="submit"></input>
+            <input type="submit" value="Enviar"></input>
           </div>
           <div style={{marginLeft:"20px"}}>
             <p>

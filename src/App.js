@@ -33,7 +33,7 @@ function App() {
 
       <div>
         <footer>
-          <small> Copyright © 2021 Cristian Barbosa</small>
+          <small>{`Copyright © ${new Date().getFullYear()} Cristian Barbosa`}</small>
         </footer>
       </div>
     </div>

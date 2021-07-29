@@ -58,13 +58,13 @@
   font-size: 1em;
 }
 
-.center .inputbox [type="button"] {
+.center .inputbox [type="submit"] {
   width: 50%;
   background: dodgerblue;
   color: #fff;
   border: #fff;
 }
 
-.center .inputbox:hover [type="button"] {
+.center .inputbox:hover [type="submit"] {
   background: linear-gradient(45deg, rgb(14, 63, 197), dodgerblue);
 }
