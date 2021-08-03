@@ -6,9 +6,8 @@ const Navbar = ({ show }) => {
     <div className={show ? "sidenav active" : "sidenav"}>
       <ul>
         <li>
-          <a href="/">Home</a>
+          <a href="/Homer">Home</a>
           <a href="/Lista">Lista de atividades</a>
-          <a href="/Login">Login</a>
         </li>
       </ul>
     </div>

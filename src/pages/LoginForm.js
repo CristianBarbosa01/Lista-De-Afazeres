@@ -1,25 +1,52 @@
+import React, { useRef } from "react";
+import { auth } from "../firebase";
 import("./Log.css");
 
 const LoginForm = () => {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const singIn = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+      .then((user) => {
+        window.location.href = ("/Homer")
+      })
+      .catch((e) => {
+        console.log(
+          e?.code === "auth/user-not-found"
+            ? alert("Usuário não encontrado")
+            : alert(e?.message)
+        );
+      });
+  };
+
   return (
-    <div style={{display:"flex", justifyContent:"center"}}>
+    <div style={{ display: "flex", justifyContent: "center", overflow: "auto" }}>
       <div className="center">
-        <h1 style={{marginLeft:"20px"}}>Login</h1>
+        <h1 style={{ marginLeft: "20px" }}>Login</h1>
         <form>
-          <div style={{marginLeft:"20px"}} className="inputbox">
-            <input type="text" required="required"></input>
+          <div style={{ marginLeft: "20px" }} className="inputbox">
+            <input ref={emailRef} type="text" required="required"></input>
             <span>Email</span>
           </div>
-          <div style={{marginLeft:"20px"}} className="inputbox">
-            <input type="password" required="required"></input>
+          <div style={{ marginLeft: "20px" }} className="inputbox">
+            <input
+              ref={passwordRef}
+              type="password"
+              required="required"
+            ></input>
             <span>Senha</span>
           </div>
-          <div style={{marginLeft:"20px"}} className="inputbox">
-            <input type="submit" value="Enviar"></input>
+          <div style={{ marginLeft: "20px" }} className="inputbox">
+            <input onClick={singIn} type="submit" value="Enviar"></input>
           </div>
-          <div style={{marginLeft:"20px"}}>
+          <div style={{ marginLeft: "20px" }}>
             <p>
-              Não tem conta?  <a href="/Cadastro"> Crie uma!</a>
+              Não tem conta? <a href="/Cadastro"> Crie uma!</a>
             </p>
           </div>
         </form>

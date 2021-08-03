@@ -30,7 +30,12 @@ const Cadastro = () => {
 
   return (
     <div
-      style={{ overflow: "auto", display: "flex", justifyContent: "center" }}
+      style={{
+        overflow: "auto",
+        display: "flex",
+        justifyContent: "center",
+        overflow: "auto",
+      }}
     >
       <div className="center2">
         <h1 className="nome" style={{ marginLeft: "20px" }}>
