@@ -29,7 +29,7 @@ function App() {
         <Switch>
           <Route path="/" exact={true} component={LoginForm} />
           <Route path="/Cadastro" exact={true} component={Cadastro} />
-          <Route path="/Homer" exact={true} component={Home} />
+          <Route path="/Home" exact={true} component={Home} />
           <Route path="/Lista" exact={true} component={Lista} />
         </Switch>
       </Router>
