@@ -60,12 +60,31 @@
 }
 
 .center2 .inputbox2 [type="submit"] {
-  width: 50%;
   background: rgb(36, 218, 51);
   color: #fff;
   border: #fff;
 }
 
+button{
+  font-size: 30px;
+  border-radius: 10px;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: #fff;
+}
+
+.center2 .inputbox3:hover [type="submit"] {
+  background: linear-gradient(45deg, rgb(14, 63, 197), dodgerblue);
+}
+
+button a {
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+}
 .center2 .inputbox2:hover [type="submit"] {
   background: linear-gradient(45deg, rgb(40, 192, 73), rgb(36, 218, 51));
 }
