@@ -13,7 +13,7 @@ const LoginForm = () => {
         passwordRef.current.value
       )
       .then((user) => {
-        window.location.href = ("/Homer")
+        window.location.href = ("/Home")
       })
       .catch((e) => {
         console.log(
