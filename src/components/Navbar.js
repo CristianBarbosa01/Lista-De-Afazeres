@@ -1,6 +1,7 @@
 import("./Modal.css");
 import("../App.css");
 
+
 const Navbar = ({ show }) => {
   return (
     <div className={show ? "sidenav active" : "sidenav"}>
@@ -8,6 +9,7 @@ const Navbar = ({ show }) => {
         <li>
           <a href="/Homer">Home</a>
           <a href="/Lista">Lista de atividades</a>
+          <a href="/">Sair</a>
         </li>
       </ul>
     </div>
