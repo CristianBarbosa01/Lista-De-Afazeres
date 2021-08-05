@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import firebase from "../firebase";
 
 function Modal({ closeModal }) {
+  const [dados, setDados] = useState({});
+  const uid = sessionStorage.getItem("uid");
+  const createTodo = async () => {
+    const tarefas = firebase.database().ref("tarefas");
+    await setDados({ ...dados, concluido: false });
+    await tarefas.child(uid).push(dados);
+  };
+
+  console.log(dados);
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div className="modalContainer">
@@ -26,7 +37,12 @@ function Modal({ closeModal }) {
               }}
             >
               <p>Data</p>
-              <input type="date" name="data"></input>
+              <input
+                onChange={(e) => setDados({ ...dados, data: e.target.value })}
+                value={dados.data}
+                type="date"
+                name="data"
+              ></input>
             </div>
             <div
               style={{
@@ -37,7 +53,12 @@ function Modal({ closeModal }) {
               }}
             >
               <p>Hora</p>
-              <input type="time" name="hora"></input>
+              <input
+                onChange={(e) => setDados({ ...dados, hora: e.target.value })}
+                value={dados.hora}
+                type="time"
+                name="hora"
+              ></input>
             </div>
           </div>
           <div
@@ -49,7 +70,11 @@ function Modal({ closeModal }) {
           >
             <p>Tarefa</p>
             <textarea
-              placeholder="Digite sua tarefa!"
+              onChange={(e) =>
+                setDados({ ...dados, descricao: e.target.value })
+              }
+              value={dados.descricao}
+              placeholder="Descrição"
               style={{
                 minHeight: 150,
                 minWidth: 500,
@@ -66,7 +91,9 @@ function Modal({ closeModal }) {
             >
               Cancelar
             </button>
-            <button style={{ width: "120px" }}>Enviar</button>
+            <button onClick={createTodo} style={{ width: "120px" }}>
+              Enviar
+            </button>
           </div>
         </div>
       </div>
