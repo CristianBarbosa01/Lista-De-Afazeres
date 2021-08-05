@@ -12,7 +12,9 @@ const LoginForm = () => {
         emailRef.current.value,
         passwordRef.current.value
       )
-      .then((user) => {
+      .then((resp) => {
+        sessionStorage?.removeItem('uid')
+        sessionStorage?.setItem('uid', resp?.user?.uid)
         window.location.href = ("/Home")
       })
       .catch((e) => {
