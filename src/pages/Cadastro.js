@@ -6,7 +6,7 @@ const Cadastro = () => {
   const nomeRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const ref = database.ref("usuarios/");
+  const ref = database.ref("usuarios");
 
   const singUp = (e) => {
     let nome = nomeRef?.current?.value;
@@ -22,6 +22,7 @@ const Cadastro = () => {
           email,
           password,
         });
+        window.location.href = "/Home";
       })
       .catch((e) => {
         e?.code === "auth/weak-password"

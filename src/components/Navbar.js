@@ -7,7 +7,7 @@ const Navbar = ({ show }) => {
     <div className={show ? "sidenav active" : "sidenav"}>
       <ul>
         <li>
-          <a href="/Homer">Home</a>
+          <a href="/Home">Home</a>
           <a href="/Lista">Lista de atividades</a>
           <a href="/">Sair</a>
         </li>
