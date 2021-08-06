@@ -23,9 +23,9 @@ const Home = () => {
   console.log(tarefas);
 
   return (
-    <div className="uHome">
+    <div className="uHome" style={{ backgroundColor:"#affff4" }}>
       <button
-        style={{ right: 0, bottom: 40, margin: 20, position: "absolute" }}
+        style={{ right: 0, bottom: 40, margin: 20, position: "absolute", width:"60px", height:"60px", textAlign:"center" }}
         id="btn"
         className="openModalBtn"
         onClick={() => {
@@ -41,16 +41,31 @@ const Home = () => {
             <div
               key={key}
               style={{
-                width: 500,
-                minHeight: 100,
+                width: 1315,
+                height: 100,
                 borderRadius: 15,
-                backgroundColor: "#f9f9f9",
+                backgroundColor: "#ffb772",
                 margin: 15,
                 padding: 10,
+                display: "flex",
+                alignItems: "center",
+                boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)"
               }}
             >
-              <p>{`Data: ${t?.data?.replaceAll("-", "/")}`}</p>
-              <p>{`Descricao: ${t?.descricao}`}</p>
+              <table style={{ width: "100%", height: "100%" }}>
+                <tr>
+                  <td style={{ width: "20%", borderRadius: 15, backgroundColor:"#fff6be", textAlign:"center", boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}>
+                    <p>{`Data: ${t?.data?.replaceAll("-", "/")}`}</p>
+                  {/* </td>
+                  <td style={{ width: "10%", borderRadius: 15, backgroundColor:"#F5F5F5", textAlign:"center", boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)"}}> */}
+                    <p>{`hora: ${t?.hora}`}</p>
+                  </td>
+                  {/* <td style={{ borderLeft:"5px solid #a5bfca", height:"100%" }}><p></p></td> */}
+                  <td style={{ width: "80%", height: "100%" , backgroundColor:"#fff6be" , borderRadius: 15, boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}>
+                    <p style={{marginLeft:"10px"}}>{`Descricao: ${t?.descricao}`}</p>
+                  </td>
+                </tr>
+              </table>
             </div>
           ))}
         </div>
