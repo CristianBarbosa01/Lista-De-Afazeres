@@ -3,14 +3,13 @@ import firebase from "../firebase";
 
 function Modal({ closeModal }) {
   const [dados, setDados] = useState({});
-  const uid = sessionStorage.getItem("uid");
+  const user = localStorage.getItem("user");
+  const uid = JSON.parse(user)?.uid
   const createTodo = async () => {
     const tarefas = firebase.database().ref("tarefas");
     await setDados({ ...dados, concluido: false });
     await tarefas.child(uid).push(dados);
   };
-
-  console.log(dados);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

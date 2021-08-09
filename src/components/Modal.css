@@ -71,3 +71,28 @@
 #btn:active {
   position: relative;
 }
+.btn2{
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btnTD {
+  font-family: 'Catamaran', sans-serif;
+	color: black;
+	cursor: pointer;
+	display: block;
+	border: 1px solid #fff;
+	transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+
+}
+.btnTD:hover {
+	color: #fff !important;
+	background-color: transparent;
+	text-shadow: nthree;
+}
+.btnTD:hover:before {
+	left: 0%;
+	right: auto;
+	width: 100%;
+}
+
