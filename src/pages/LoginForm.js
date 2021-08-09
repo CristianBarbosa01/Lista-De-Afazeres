@@ -13,9 +13,16 @@ const LoginForm = () => {
         passwordRef.current.value
       )
       .then((resp) => {
-        sessionStorage?.removeItem('uid')
-        sessionStorage?.setItem('uid', resp?.user?.uid)
-        window.location.href = ("/Home")
+        localStorage?.removeItem("user");
+        localStorage?.setItem(
+          "user",
+          JSON.stringify({
+            email: emailRef.current.value,
+            senha: passwordRef.current.value,
+            uid: resp?.user?.uid,
+          })
+        );
+        window.location.href = "/Home";
       })
       .catch((e) => {
         console.log(
@@ -27,7 +34,9 @@ const LoginForm = () => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", overflow: "auto" }}>
+    <div
+      style={{ display: "flex", justifyContent: "center", overflow: "auto" }}
+    >
       <div className="center">
         <h1 style={{ marginLeft: "20px" }}>Login</h1>
         <form>
