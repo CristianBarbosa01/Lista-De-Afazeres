@@ -9,7 +9,7 @@ const Home = () => {
   const tarefasRef = database.ref("tarefas");
   const user = localStorage.getItem("user");
   const uid = JSON.parse(user)?.uid;
-
+  
   useEffect(() => {
     let tasks = [];
     tarefasRef.child(uid).once("value", (data) => {
@@ -25,11 +25,17 @@ const Home = () => {
   }, []);
 
   const onDelete = (key) => {
-    if (window.confirm("certeza")) {
+    if (window.confirm("certeza???")) {
       tarefasRef.child(uid).child(key).remove();
-      window.location.reload()
+      window.location.reload();
     }
   };
+  const complete = (key) => {
+    if (window.confirm("certeza???")) {
+      tarefasRef.child(uid).child(key).update({concluido: true});
+      window.location.reload();
+    }
+  }
   return (
     <div
       className="uHome"
@@ -107,21 +113,22 @@ const Home = () => {
                       height: "100%",
                     }}
                   >
-                    {console.log(t.key)}
+                    {!t.concluido && <td>
+                        <button
+                          className="btnTD"
+                          onClick={() => complete(t.key)}
+                          style={{
+                            cursor: "pointer",
+                            fontSize: "20px",
+                          }}
+                        >
+                          Concluida
+                        </button>
+                      </td>}
                     <td>
                       <button
                         className="btnTD"
-                        style={{
-                          cursor: "pointer",
-                          fontSize: "20px",
-                        }}
-                      >
-                        Concluida
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="btnTD"
+                   
                         style={{
                           cursor: "pointer",
                           fontSize: "20px",
