@@ -13,16 +13,23 @@ const Home = () => {
   useEffect(() => {
     let tasks = [];
     tarefasRef.child(uid).once("value", (data) => {
-      const valores = data?.val();
-      Object.keys(valores).map((key) => {
-        tasks.push(valores[key]);
-      });
-      setTarefas(tasks);
+      if (data?.val() !== null) {
+        const valores = data?.val();
+        Object?.keys(valores)?.map((key) => {
+          tasks?.push({ key, ...valores[key] });
+        });
+        setTarefas(tasks);
+      }
+      return null;
     });
-
   }, []);
-  
 
+  const onDelete = (key) => {
+    if (window.confirm("certeza")) {
+      tarefasRef.child(uid).child(key).remove();
+      window.location.reload()
+    }
+  };
   return (
     <div
       className="uHome"
@@ -47,7 +54,7 @@ const Home = () => {
         <strong style={{ fontSize: 30 }}>+</strong>
       </button>
       {openModal && <Modal closeModal={setOpenModal} />}
-      {tarefas && tarefas?.length > 0 && (
+      {tarefas?.length > 0 && (
         <div style={{ overflow: "auto" }}>
           {tarefas?.map((t, key) => (
             <div
@@ -76,11 +83,9 @@ const Home = () => {
                     }}
                   >
                     <p>{`Data: ${t?.data?.replaceAll("-", "/")}`}</p>
-                    {/* </td>
-                  <td style={{ width: "10%", borderRadius: 15, backgroundColor:"#F5F5F5", textAlign:"center", boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)"}}> */}
                     <p>{`hora: ${t?.hora}`}</p>
                   </td>
-                  {/* <td style={{ borderLeft:"5px solid #a5bfca", height:"100%" }}><p></p></td> */}
+
                   <td
                     style={{
                       width: "80%",
@@ -98,35 +103,40 @@ const Home = () => {
                     style={{
                       display: "flex",
                       flexDirection: "column",
-                      marginTop:2.5,
+                      marginTop: 2.5,
                       height: "100%",
                     }}
                   >
+                    {console.log(t.key)}
                     <td>
-                      <button className="btnTD"
+                      <button
+                        className="btnTD"
                         style={{
                           cursor: "pointer",
-                          fontSize:"20px"
+                          fontSize: "20px",
                         }}
                       >
-                        Cloncluida
+                        Concluida
                       </button>
                     </td>
                     <td>
-                      <button className="btnTD"
+                      <button
+                        className="btnTD"
                         style={{
                           cursor: "pointer",
-                          fontSize:"20px"
+                          fontSize: "20px",
                         }}
                       >
                         Editar
                       </button>
                     </td>
                     <td>
-                      <button className="btnTD"
+                      <button
+                        className="btnTD"
+                        onClick={() => onDelete(t.key)}
                         style={{
                           cursor: "pointer",
-                          fontSize:"20px"
+                          fontSize: "20px",
                         }}
                       >
                         Deletar
