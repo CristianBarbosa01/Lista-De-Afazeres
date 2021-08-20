@@ -4,12 +4,13 @@ import Modal from "../components/Modal";
 import "../components/Modal.css";
 
 const Home = () => {
+  const [dados, setDados] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [tarefas, setTarefas] = useState([]);
   const tarefasRef = database.ref("tarefas");
   const user = localStorage.getItem("user");
   const uid = JSON.parse(user)?.uid;
-  
+
   useEffect(() => {
     let tasks = [];
     tarefasRef.child(uid).once("value", (data) => {
@@ -32,10 +33,16 @@ const Home = () => {
   };
   const complete = (key) => {
     if (window.confirm("certeza???")) {
-      tarefasRef.child(uid).child(key).update({concluido: true});
+      tarefasRef.child(uid).child(key).update({ concluido: true });
       window.location.reload();
     }
-  }
+  };
+
+  const editar = (tarefa) => {
+    setOpenModal(true);
+    setDados(tarefa);
+  };
+
   return (
     <div
       className="uHome"
@@ -54,12 +61,13 @@ const Home = () => {
         id="btn"
         className="openModalBtn"
         onClick={() => {
+          setDados([]);
           setOpenModal(true);
         }}
       >
         <strong style={{ fontSize: 30 }}>+</strong>
       </button>
-      {openModal && <Modal closeModal={setOpenModal} />}
+      {openModal && <Modal closeModal={setOpenModal} dados={dados} />}
       {tarefas?.length > 0 && (
         <div style={{ overflow: "auto" }}>
           {tarefas?.map((t, key) => (
@@ -113,7 +121,8 @@ const Home = () => {
                       height: "100%",
                     }}
                   >
-                    {!t.concluido && <td>
+                    {!t.concluido && (
+                      <td>
                         <button
                           className="btnTD"
                           onClick={() => complete(t.key)}
@@ -124,11 +133,12 @@ const Home = () => {
                         >
                           Concluida
                         </button>
-                      </td>}
+                      </td>
+                    )}
                     <td>
                       <button
                         className="btnTD"
-                   
+                        onClick={() => editar(t)}
                         style={{
                           cursor: "pointer",
                           fontSize: "20px",

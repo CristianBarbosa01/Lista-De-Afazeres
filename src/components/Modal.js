@@ -1,23 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import firebase from "../firebase";
 
-function Modal({ closeModal }) {
-  const [dados, setDados] = useState({});
+function Modal(props) {
+  const [dados, setDados] = useState({ data: "", hora: "", descricao: "" });
   const user = localStorage.getItem("user");
   const uid = JSON.parse(user)?.uid;
+  const tarefas = firebase.database().ref("tarefas");
   const createTodo = async () => {
-    const tarefas = firebase.database().ref("tarefas");
     const dadosTarefa = { ...dados, concluido: false };
     await tarefas.child(uid).push(dadosTarefa);
     window.location.reload();
   };
+
+  const updateTodo = async () => {
+    const dadosTarefa = { ...dados };
+    await tarefas.child(uid).child(dados?.key).update(dadosTarefa);
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    if (props?.dados?.key !== undefined) {
+      setDados(props?.dados);
+    }
+  }, []);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div className="modalContainer">
         <div className="titleCloseBtn">
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <button onClick={() => closeModal(false)}> X </button>
+            <button onClick={() => props?.closeModal(false)}> X </button>
           </div>
           <div
             style={{
@@ -85,13 +97,18 @@ function Modal({ closeModal }) {
           </div>
           <div className="footer" style={{ margin: "10px" }}>
             <button
-              onClick={() => closeModal(false)}
+              onClick={() => props?.closeModal(false)}
               id="cancelBtn"
               style={{ width: "120px" }}
             >
               Cancelar
             </button>
-            <button onClick={createTodo} style={{ width: "120px" }}>
+            <button
+              onClick={() =>
+                props?.dados?.key !== undefined ? updateTodo() : createTodo()
+              }
+              style={{ width: "120px" }}
+            >
               Enviar
             </button>
           </div>

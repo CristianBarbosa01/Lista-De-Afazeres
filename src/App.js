@@ -28,7 +28,8 @@ function App() {
         <Navbar show={showNav} />
         <Switch>
           <Route path="/" exact={true} component={LoginForm} />
-          <Route path="/Cadastro" exact={true} component={Cadastro} />
+          
+          {telaAtual && <Route path="/Cadastro" exact={true} component={Cadastro} />}
           <Route path="/Home" exact={true} component={Home} />
           <Route path="/Lista" exact={true} component={Lista} />
         </Switch>
