@@ -18,8 +18,10 @@ function Modal(props) {
     window.location.reload();
   };
 
+  const edicao = props?.dados?.key !== undefined;
+
   useEffect(() => {
-    if (props?.dados?.key !== undefined) {
+    if (edicao) {
       setDados(props?.dados);
     }
   }, []);
@@ -38,7 +40,7 @@ function Modal(props) {
               marginTop: "-50px",
             }}
           >
-            <h1>Cadastrar atividades</h1>
+            <h1>{edicao ? "Editar atividade" : "Cadastrar atividades"}</h1>
           </div>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <div

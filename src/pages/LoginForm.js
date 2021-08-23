@@ -35,7 +35,11 @@ const LoginForm = () => {
 
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", overflow: "auto" }}
+      style={{ 
+        display: "flex",
+        justifyContent: "center", 
+        overflow: "auto",
+      }}
     >
       <div className="center">
         <h1 style={{ marginLeft: "20px" }}>Login</h1>
@@ -52,7 +56,7 @@ const LoginForm = () => {
             ></input>
             <span>Senha</span>
           </div>
-          <div style={{ marginLeft: "20px" }} className="inputbox">
+          <div style={{ marginLeft: "20px", width:"80%" }} className="inputbox">
             <input onClick={singIn} type="submit" value="Enviar"></input>
           </div>
           <div style={{ marginLeft: "20px" }}>

@@ -60,10 +60,10 @@
   cursor: pointer;
   color: #ffffff;
   text-decoration: none;
-  display:block;
+  display: block;
   height: 300px;
   width: 300px;
-  border-radius: 50%;   
+  border-radius: 50%;
 }
 #btn:hover {
   background: linear-gradient(0, 1, 2, 3);
@@ -71,28 +71,32 @@
 #btn:active {
   position: relative;
 }
-.btn2{
+.btn2 {
   font-size: 20px;
   cursor: pointer;
 }
 
 .btnTD {
-  font-family: 'Catamaran', sans-serif;
-	color: black;
-	cursor: pointer;
-	display: block;
-	border: 1px solid #fff;
-	transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-
+  font-family: "Catamaran", sans-serif;
+  color: black;
+  cursor: pointer;
+  width: 110%;
+  display: block;
+  border: 1px solid #fff;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
 }
 .btnTD:hover {
-	color: #fff !important;
-	background-color: transparent;
-	text-shadow: nthree;
+  color: #fff !important;
+  background-color: transparent;
+  text-shadow: inherit;
 }
 .btnTD:hover:before {
-	left: 0%;
-	right: auto;
-	width: 100%;
+  left: 0%;
+  right: auto;
+  width: 100%;
 }
 
+.uHome {
+  width: 100%;
+  height: 100%;
+}

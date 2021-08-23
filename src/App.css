@@ -12,11 +12,11 @@ body {
 header {
   padding: 30px;
   background: #011627;
-  height: 10px;
+  height: 5%;
   color: #fff;
   display: flex;
   align-items: center;
-  font-size: 30px;
+  font-size: 30%;
   text-align: center;
 }
 
@@ -30,7 +30,7 @@ header svg {
   position: absolute;
   height: 85vh;
   padding: 0 30px;
-  left: -100%;
+  left: -1000%;
   transition: all 1s;
 }
 

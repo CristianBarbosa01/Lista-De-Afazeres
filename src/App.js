@@ -15,10 +15,10 @@ function App() {
   const telaAtual = window?.location?.pathname;
 
   return (
-    <div className="App">
+    <div style={{width:"100%"}} className="App">
       <Router>
         {telaAtual !== "/" && telaAtual !== "/Cadastro" && (
-          <header>
+          <header style={{width:"95.5%"}}>
             <FaBars
               style={{ cursor: "pointer" }}
               onClick={() => setShowNav(!showNav)}

@@ -5,15 +5,17 @@ import "../components/Modal.css";
 
 const Home = () => {
   const [dados, setDados] = useState([]);
+  const [concluidos, setConcluidos] = useState([]);
+  const [praFazer, setPraFazer] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [tarefas, setTarefas] = useState([]);
   const tarefasRef = database.ref("tarefas");
   const user = localStorage.getItem("user");
   const uid = JSON.parse(user)?.uid;
 
-  useEffect(() => {
+  useEffect(async () => {
     let tasks = [];
-    tarefasRef.child(uid).once("value", (data) => {
+    await tarefasRef.child(uid).once("value", (data) => {
       if (data?.val() !== null) {
         const valores = data?.val();
         Object?.keys(valores)?.map((key) => {
@@ -23,6 +25,17 @@ const Home = () => {
       }
       return null;
     });
+
+    let tarefasConcluidas = [];
+    let tarefasPraFazer = [];
+    tasks?.map((t) => {
+      t?.concluido === true
+        ? tarefasConcluidas?.push(t)
+        : tarefasPraFazer?.push(t);
+      const Fazer = setTarefas(praFazer);
+    });
+    setConcluidos(tarefasConcluidas);
+    setPraFazer(tarefasPraFazer);
   }, []);
 
   const onDelete = (key) => {
@@ -46,7 +59,7 @@ const Home = () => {
   return (
     <div
       className="uHome"
-      style={{ backgroundColor: "#affff4", overflow: "auto" }}
+      style={{ backgroundColor: "#affff4", overflow: "auto", width: "100%" }}
     >
       <button
         style={{
@@ -74,94 +87,113 @@ const Home = () => {
             <div
               key={key}
               style={{
-                width: 1315,
+                width: "96%",
                 height: 120,
                 borderRadius: 15,
-                backgroundColor: "#ffb772",
+                backgroundColor: t?.concluido ? "green" : "#ffb772",
                 margin: 15,
                 padding: 10,
                 display: "flex",
                 alignItems: "center",
-                boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
+                boxShadow: "0 3px 10px rgb(0 0 0 / 0.6)",
               }}
             >
-              <table style={{ width: "100%", height: "100%" }}>
-                <tr>
-                  <td
-                    style={{
-                      width: "20%",
-                      borderRadius: 15,
-                      backgroundColor: "#fff6be",
-                      textAlign: "center",
-                      boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
-                    }}
-                  >
-                    <p>{`Data: ${t?.data?.replaceAll("-", "/")}`}</p>
-                    <p>{`hora: ${t?.hora}`}</p>
-                  </td>
-
-                  <td
-                    style={{
-                      width: "80%",
-                      height: "100%",
-                      backgroundColor: "#fff6be",
-                      borderRadius: 15,
-                      boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
-                    }}
-                  >
-                    <p
-                      style={{ marginLeft: "10px" }}
-                    >{`Descricao: ${t?.descricao}`}</p>
-                  </td>
-                  <tr
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
                     style={{
                       display: "flex",
                       flexDirection: "column",
-                      marginTop: 2.5,
-                      height: "100%",
+                      justifyContent: "center",
+                      width: "15%",
+                      height: "90%",
+                      marginLeft: 20,
+                      borderRadius: 20,
+                      alignItems: "center",
+                      boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
                     }}
                   >
-                    {!t.concluido && (
-                      <td>
+                    <p>{` ${t?.data?.replaceAll("-", "/")}`}</p>
+                    <p>{`🕜 ${t?.hora}`}</p>
+                  </div>
+                  <div
+                    style={{
+                      width: "70%",
+                      height: "100%",
+                      borderRadius: 20,
+                      margin: 20,
+                      boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
+                    }}
+                  >
+                    <p style={{ marginLeft: 30 }}>{`${t?.descricao}`}</p>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      with: "100%",
+                      height: "100%",
+                      borderRadius: 20,
+                    }}
+                  >
+                    <div style={{ margin: 10 }}>
+                      {!t.concluido && (
                         <button
                           className="btnTD"
                           onClick={() => complete(t.key)}
                           style={{
                             cursor: "pointer",
                             fontSize: "20px",
+                            boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
+                            margin: 2,
                           }}
                         >
-                          Concluida
+                          ✔️
                         </button>
-                      </td>
-                    )}
-                    <td>
+                      )}
+
                       <button
                         className="btnTD"
                         onClick={() => editar(t)}
                         style={{
                           cursor: "pointer",
                           fontSize: "20px",
+                          boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
+                          margin: 2,
                         }}
                       >
-                        Editar
+                        ✏️
                       </button>
-                    </td>
-                    <td>
+
                       <button
                         className="btnTD"
                         onClick={() => onDelete(t.key)}
                         style={{
                           cursor: "pointer",
                           fontSize: "20px",
+                          boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
+                          margin: 2,
                         }}
                       >
-                        Deletar
+                        🗑️
                       </button>
-                    </td>
-                  </tr>
-                </tr>
-              </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
