@@ -32,7 +32,7 @@ const Home = () => {
       t?.concluido === true
         ? tarefasConcluidas?.push(t)
         : tarefasPraFazer?.push(t);
-      const Fazer = setTarefas(praFazer);
+      
     });
     setConcluidos(tarefasConcluidas);
     setPraFazer(tarefasPraFazer);
@@ -50,6 +50,7 @@ const Home = () => {
       window.location.reload();
     }
   };
+
 
   const editar = (tarefa) => {
     setOpenModal(true);
@@ -151,6 +152,7 @@ const Home = () => {
                   >
                     <div style={{ margin: 10 }}>
                       {!t.concluido && (
+                        
                         <button
                           className="btnTD"
                           onClick={() => complete(t.key)}
@@ -161,7 +163,7 @@ const Home = () => {
                             margin: 2,
                           }}
                         >
-                          ✔️
+                        {!t.concluido ? '✔️' : '❌' }
                         </button>
                       )}
 
