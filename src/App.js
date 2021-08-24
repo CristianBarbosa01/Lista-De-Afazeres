@@ -18,7 +18,7 @@ function App() {
     <div style={{width:"100%"}} className="App">
       <Router>
         {telaAtual !== "/" && telaAtual !== "/Cadastro" && (
-          <header style={{width:"95.5%"}}>
+          <header style={{width:"96.9%"}}>
             <FaBars
               style={{ cursor: "pointer" }}
               onClick={() => setShowNav(!showNav)}
