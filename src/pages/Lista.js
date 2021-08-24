@@ -12,6 +12,10 @@ const Home = () => {
   const tarefasRef = database.ref("tarefas");
   const user = localStorage.getItem("user");
   const uid = JSON.parse(user)?.uid;
+  const colunas = [
+    { titulo: "Pendentes", tipo: "PENDENTES", corFundo: "#09f0f9" },
+    { titulo: "Concluídos", tipo: "CONCLUIDO", corFundo: "green" },
+  ];
 
   useEffect(async () => {
     let tasks = [];
@@ -32,7 +36,6 @@ const Home = () => {
       t?.concluido === true
         ? tarefasConcluidas?.push(t)
         : tarefasPraFazer?.push(t);
-      
     });
     setConcluidos(tarefasConcluidas);
     setPraFazer(tarefasPraFazer);
@@ -44,23 +47,114 @@ const Home = () => {
       window.location.reload();
     }
   };
-  const complete = (key) => {
+  const complete = (key, status) => {
     if (window.confirm("certeza???")) {
-      tarefasRef.child(uid).child(key).update({ concluido: true });
+      tarefasRef.child(uid).child(key).update({ concluido: status });
       window.location.reload();
     }
   };
-
 
   const editar = (tarefa) => {
     setOpenModal(true);
     setDados(tarefa);
   };
 
+  const getDadosColuna = (array) => {
+    return array?.map((t, key) => (
+      <div key={`dado-${key}`}>
+        <div style={{ display: "flex", alignItems: "center", padding: 15 }}>
+          <div
+            key={key}
+            style={{
+              flex: 1,
+              borderRadius: 15,
+              backgroundColor: "#ffb772",
+              padding: 10,
+              display: "flex",
+              alignItems: "center",
+              boxShadow: "0 3px 10px rgb(0 0 0 / 0.6)",
+            }}
+          >
+            <div style={{width:'100%', margin:0,}}>
+              <div style={{ display:"flex", justifyContent: 'space-evenly', backgroundColor:'#FFA54F', borderRadius:15, borderBottomLeftRadius:'0',borderBottomRightRadius:'0', marginTop:-10, marginLeft:-10, marginRight:-10 }}>
+              <p
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  borderRadius: 20,
+                  alignItems: "center",
+                }}
+              >
+                {t?.data?.replaceAll("-", "/")}
+              </p>
+              <p>🕜</p>
+              <p>{t?.hora}</p>
+              </div>
+              <p
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: 20,
+                  margin: 20,
+                  display: "flex",
+                  justifyContent: "flex-start",
+                }}
+              >{`${t?.descricao}`}</p>
+            </div>
+          </div>
+          <div style={{ margin: 10 }}>
+            <button
+              className="btnTD"
+              onClick={() => complete(t.key, !t?.concluido)}
+              style={{
+                cursor: "pointer",
+                fontSize: "20px",
+                boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
+                margin: 2,
+              }}
+            >
+              {!t.concluido ? "✔️" : "❌"}
+            </button>
+            <button
+              className="btnTD"
+              onClick={() => editar(t)}
+              style={{
+                cursor: "pointer",
+                fontSize: "20px",
+                boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
+                margin: 2,
+              }}
+            >
+              ✏️
+            </button>
+            <button
+              className="btnTD"
+              onClick={() => onDelete(t.key)}
+              style={{
+                cursor: "pointer",
+                fontSize: "20px",
+                boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
+                margin: 2,
+              }}
+            >
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <div
       className="uHome"
-      style={{ backgroundColor: "#affff4", overflow: "auto", width: "100%" }}
+      style={{
+        display: "flex",
+        backgroundColor: "#affff4",
+        overflow: "auto",
+        width: "100%",
+        flexDirection: "row",
+      }}
     >
       <button
         style={{
@@ -82,124 +176,26 @@ const Home = () => {
         <strong style={{ fontSize: 30 }}>+</strong>
       </button>
       {openModal && <Modal closeModal={setOpenModal} dados={dados} />}
-      {tarefas?.length > 0 && (
-        <div style={{ overflow: "auto" }}>
-          {tarefas?.map((t, key) => (
-            <div
-              key={key}
-              style={{
-                width: "96%",
-                height: 120,
-                borderRadius: 15,
-                backgroundColor: t?.concluido ? "green" : "#ffb772",
-                margin: 15,
-                padding: 10,
-                display: "flex",
-                alignItems: "center",
-                boxShadow: "0 3px 10px rgb(0 0 0 / 0.6)",
-              }}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    width: "100%",
-                    alignItems: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      width: "15%",
-                      height: "90%",
-                      marginLeft: 20,
-                      borderRadius: 20,
-                      alignItems: "center",
-                      boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
-                    }}
-                  >
-                    <p>{` ${t?.data?.replaceAll("-", "/")}`}</p>
-                    <p>{`🕜 ${t?.hora}`}</p>
-                  </div>
-                  <div
-                    style={{
-                      width: "70%",
-                      height: "100%",
-                      borderRadius: 20,
-                      margin: 20,
-                      boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
-                    }}
-                  >
-                    <p style={{ marginLeft: 30 }}>{`${t?.descricao}`}</p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-around",
-                      with: "100%",
-                      height: "100%",
-                      borderRadius: 20,
-                    }}
-                  >
-                    <div style={{ margin: 10 }}>
-                      {!t.concluido && (
-                        
-                        <button
-                          className="btnTD"
-                          onClick={() => complete(t.key)}
-                          style={{
-                            cursor: "pointer",
-                            fontSize: "20px",
-                            boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
-                            margin: 2,
-                          }}
-                        >
-                        {!t.concluido ? '✔️' : '❌' }
-                        </button>
-                      )}
-
-                      <button
-                        className="btnTD"
-                        onClick={() => editar(t)}
-                        style={{
-                          cursor: "pointer",
-                          fontSize: "20px",
-                          boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
-                          margin: 2,
-                        }}
-                      >
-                        ✏️
-                      </button>
-
-                      <button
-                        className="btnTD"
-                        onClick={() => onDelete(t.key)}
-                        style={{
-                          cursor: "pointer",
-                          fontSize: "20px",
-                          boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
-                          margin: 2,
-                        }}
-                      >
-                        🗑️
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+      {colunas?.map((coluna) => (
+        <div
+          style={{
+            overflow: "auto",
+            display: "flex",
+            flexDirection: "column",
+            width: "50%",
+            backgroundColor: coluna.corFundo,
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <h1 style={{ color: "#fff" }}>{coluna.titulo}</h1>
+          </div>
+          {coluna.tipo === "PENDENTES"
+            ? getDadosColuna(praFazer)
+            : coluna.tipo === "CONCLUIDO"
+            ? getDadosColuna(concluidos)
+            : getDadosColuna(tarefas)}
         </div>
-      )}
+      ))}
     </div>
   );
 };
