@@ -8,14 +8,22 @@ function Modal(props) {
   const tarefas = firebase.database().ref("tarefas");
   const createTodo = async () => {
     const dadosTarefa = { ...dados, concluido: false };
-    await tarefas.child(uid).push(dadosTarefa);
-    window.location.reload();
+    if (dados?.data !== "" && dados?.descricao && dados?.hora) {
+      await tarefas.child(uid).push(dadosTarefa);
+      window.location.reload();
+    } else {
+      window.alert("Preencha todos os campos");
+    }
   };
 
   const updateTodo = async () => {
     const dadosTarefa = { ...dados };
-    await tarefas.child(uid).child(dados?.key).update(dadosTarefa);
-    window.location.reload();
+    if (dados?.descricao !== "") {
+      await tarefas.child(uid).child(dados?.key).update(dadosTarefa);
+      window.location.reload();
+    } else {
+      window.alert("Preencha todos os campos");
+    }
   };
 
   const edicao = props?.dados?.key !== undefined;
