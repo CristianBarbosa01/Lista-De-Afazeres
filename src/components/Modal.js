@@ -105,7 +105,7 @@ function Modal(props) {
               }}
             ></textarea>
           </div>
-          <div className="footer" style={{ margin: "10px" }}>
+          <div className="footer">
             <button
               onClick={() => props?.closeModal(false)}
               id="cancelBtn"

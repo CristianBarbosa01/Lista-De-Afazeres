@@ -15,7 +15,7 @@ function App() {
   const telaAtual = window?.location?.pathname;
 
   return (
-    <div style={{ width: "100%" }} className="App">
+    <div className="App">
       <Router>
         {telaAtual !== "/" && telaAtual !== "/Cadastro" && (
           <header style={{ flex: 1 }}>

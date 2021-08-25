@@ -3,7 +3,7 @@ import { database } from "../firebase";
 import Modal from "../components/Modal";
 import "../components/Modal.css";
 
-const Home = () => {
+const Lista = () => {
   const [dados, setDados] = useState([]);
   const [concluidos, setConcluidos] = useState([]);
   const [praFazer, setPraFazer] = useState([]);
@@ -160,14 +160,15 @@ const Home = () => {
   };
 
   return (
+    <div style={{height:'95vh'}}>
     <div
       className="uHome"
       style={{
         display: "flex",
-        backgroundColor: "#affff4",
+        backgroundColor: "black",
         overflow: "auto",
-        width: "100%",
         flexDirection: "row",
+        height:'100%'
       }}
     >
       <button
@@ -224,7 +225,8 @@ const Home = () => {
         </div>
       ))}
     </div>
+    </div>
   );
 };
 
-export default Home;
+export default Lista;
