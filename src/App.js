@@ -15,10 +15,10 @@ function App() {
   const telaAtual = window?.location?.pathname;
 
   return (
-    <div style={{width:"100%"}} className="App">
+    <div style={{ width: "100%" }} className="App">
       <Router>
         {telaAtual !== "/" && telaAtual !== "/Cadastro" && (
-          <header style={{width:"96.9%"}}>
+          <header style={{ flex: 1 }}>
             <FaBars
               style={{ cursor: "pointer" }}
               onClick={() => setShowNav(!showNav)}
@@ -28,8 +28,10 @@ function App() {
         <Navbar show={showNav} />
         <Switch>
           <Route path="/" exact={true} component={LoginForm} />
-          
-          {telaAtual && <Route path="/Cadastro" exact={true} component={Cadastro} />}
+
+          {telaAtual && (
+            <Route path="/Cadastro" exact={true} component={Cadastro} />
+          )}
           <Route path="/Home" exact={true} component={Home} />
           <Route path="/Lista" exact={true} component={Lista} />
         </Switch>

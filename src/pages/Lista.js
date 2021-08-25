@@ -189,7 +189,20 @@ const Home = () => {
       >
         <strong style={{ fontSize: 30 }}>+</strong>
       </button>
-      {openModal && <Modal closeModal={setOpenModal} dados={dados} />}
+      {openModal && (
+        <div
+          style={{
+            flex: 1,
+            backgroundColor: "coral",
+            position: "absolute",
+            right: "50%",
+            left: "50%",
+            top: 150,
+          }}
+        >
+          <Modal closeModal={setOpenModal} dados={dados} />
+        </div>
+      )}
       {colunas?.map((coluna) => (
         <div
           style={{

@@ -1,4 +1,3 @@
-import("./Modal.css");
 import("../App.css");
 
 
