@@ -18,12 +18,18 @@ function App() {
     <div className="App">
       <Router>
         {telaAtual !== "/" && telaAtual !== "/Cadastro" && (
-          <header style={{ flex: 1 }}>
-            <FaBars
-              style={{ cursor: "pointer" }}
+          <div className="header" style={{ position: "fixed" }}>
+            <p
+              style={{
+                cursor: "pointer",
+                fontSize: "40px",
+                position: "absolute",
+              }}
               onClick={() => setShowNav(!showNav)}
-            />
-          </header>
+            >
+              ☰
+            </p>
+          </div>
         )}
         <Navbar show={showNav} />
         <Switch>

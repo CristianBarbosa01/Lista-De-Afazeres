@@ -13,8 +13,18 @@ const Lista = () => {
   const user = localStorage.getItem("user");
   const uid = JSON.parse(user)?.uid;
   const colunas = [
-    { titulo: "Pendentes", tipo: "PENDENTES", corFundo: "#09f0f9" },
-    { titulo: "Concluídos", tipo: "CONCLUIDO", corFundo: "green" },
+    {
+      titulo: "Pendentes",
+      tipo: "PENDENTES",
+      corFundo: "#0089CB",
+      fundo: "#00AAFF",
+    },
+    {
+      titulo: "Concluídos",
+      tipo: "CONCLUIDO",
+      corFundo: "#3BA36C",
+      fundo: "#45CD8B",
+    },
   ];
   const botoes = [
     { icone: "🗑️", tipo: "REMOVER", titulo: "Remover tarefa" },
@@ -91,8 +101,7 @@ const Lista = () => {
             style={{
               flex: 1,
               borderRadius: 15,
-              backgroundColor: "#ffb772",
-
+              backgroundColor: "#fff",
               display: "flex",
               alignItems: "center",
               boxShadow: "0 3px 10px rgb(0 0 0 / 0.6)",
@@ -103,7 +112,7 @@ const Lista = () => {
                 style={{
                   display: "flex",
                   justifyContent: "space-evenly",
-                  backgroundColor: "#FFA54F",
+                  backgroundColor: "#E6E7E2",
                   borderRadius: 15,
                 }}
               >
@@ -121,7 +130,9 @@ const Lista = () => {
                 <p>{t?.hora}</p>
               </div>
               <div style={{ padding: 10 }}>
-                <p style={{ width: "100%" }}>{`${t?.descricao}`}</p>
+                <p
+                  style={{ width: "100%", fontSize: "20px" }}
+                >{`${t?.descricao}`}</p>
               </div>
               <div
                 style={{
@@ -129,6 +140,7 @@ const Lista = () => {
                   flexDirection: "row",
                   padding: 15,
                   justifyContent: "flex-end",
+                  flexWrap: "wrap",
                 }}
               >
                 {botoes?.map((botao, index) => (
@@ -139,9 +151,12 @@ const Lista = () => {
                     style={{
                       cursor: "pointer",
                       fontSize: "20px",
-                      width: "7%",
-                      boxShadow: "10px 10px 5px -2px rgba(0,0,0,0.6)",
+                      width: 50,
+                      height: 50,
+                      boxShadow: "5px 5px 3px -2px rgba(0,0,0,0.3)",
                       margin: 2,
+                      backgroundColor: "#E6E7E2",
+                      border: "none",
                     }}
                   >
                     {botao?.multiplo
@@ -160,71 +175,83 @@ const Lista = () => {
   };
 
   return (
-    <div style={{height:'95vh'}}>
-    <div
-      className="uHome"
-      style={{
-        display: "flex",
-        backgroundColor: "black",
-        overflow: "auto",
-        flexDirection: "row",
-        height:'100%'
-      }}
-    >
-      <button
+    <div style={{ height: "100vh"}}>
+      <div
+        className="uHome"
         style={{
-          right: 0,
-          bottom: 40,
-          margin: 20,
-          width: "60px",
-          height: "60px",
-          textAlign: "center",
-          position: "fixed",
-        }}
-        id="btn"
-        className="openModalBtn"
-        onClick={() => {
-          setDados([]);
-          setOpenModal(true);
+          display: "flex",
+          overflow: "auto",
+          flexDirection: "row",
+          height: "100vh",
         }}
       >
-        <strong style={{ fontSize: 30 }}>+</strong>
-      </button>
-      {openModal && (
-        <div
+        <button
           style={{
-            flex: 1,
-            backgroundColor: "coral",
-            position: "absolute",
-            right: "50%",
-            left: "50%",
-            top: 150,
+            right: 0,
+            bottom: 40,
+            margin: 20,
+            width: "60px",
+            height: "60px",
+            textAlign: "center",
+            position: "fixed",
+          }}
+          id="btn"
+          className="openModalBtn"
+          onClick={() => {
+            setDados([]);
+            setOpenModal(true);
           }}
         >
-          <Modal closeModal={setOpenModal} dados={dados} />
-        </div>
-      )}
-      {colunas?.map((coluna) => (
-        <div
-          style={{
-            overflow: "auto",
-            display: "flex",
-            flexDirection: "column",
-            width: "50%",
-            backgroundColor: coluna.corFundo,
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <h1 style={{ color: "#fff" }}>{coluna.titulo}</h1>
+          <strong style={{ fontSize: 30 }}>+</strong>
+        </button>
+        {openModal && (
+          <div
+            style={{
+              flex: 1,
+              backgroundColor: "coral",
+              position: "absolute",
+              right: "50%",
+              left: "50%",
+              top: 150,
+            }}
+          >
+            <Modal closeModal={setOpenModal} dados={dados} />
           </div>
-          {coluna.tipo === "PENDENTES"
-            ? getDadosColuna(praFazer)
-            : coluna.tipo === "CONCLUIDO"
-            ? getDadosColuna(concluidos)
-            : getDadosColuna(tarefas)}
-        </div>
-      ))}
-    </div>
+        )}
+        {colunas?.map((coluna) => (
+          <div
+            style={{
+              overflow: "auto",
+              display: "flex",
+              flexDirection: "column",
+              width: "50%",
+              backgroundColor: coluna.corFundo,
+              marginTop: "40px",
+              marginBottom: "40px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "50vw",
+                backgroundColor: coluna.fundo,
+              }}
+            >
+              <h1
+                style={{ color: "#fff", marginTop: "90px", fontSize: "32px" }}
+              >
+                {coluna.titulo}
+              </h1>
+            </div>
+            {coluna.tipo === "PENDENTES"
+              ? getDadosColuna(praFazer)
+              : coluna.tipo === "CONCLUIDO"
+              ? getDadosColuna(concluidos)
+              : getDadosColuna(tarefas)}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
