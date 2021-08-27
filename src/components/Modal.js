@@ -38,7 +38,13 @@ function Modal(props) {
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div className="modalContainer">
         <div className="titleCloseBtn">
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginRight: -40,
+            }}
+          >
             <button onClick={() => props?.closeModal(false)}> X </button>
           </div>
           <div

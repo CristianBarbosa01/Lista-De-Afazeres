@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { auth } from "../firebase";
+import animado from "../image/animado.jpg";
 import("./Log.css");
 
 const LoginForm = () => {
@@ -35,15 +36,17 @@ const LoginForm = () => {
 
   return (
     <div
-      style={{ 
+      style={{
         display: "flex",
-        justifyContent: "center", 
-        overflow: "auto",
+        justifyContent: "center",
+        overflow: "hidden",
       }}
     >
-      <div className="center">
+      <img style={{ height: "100vh", width: "100vw" }} src={animado}></img>
+
+      <div style={{ marginTop: 100 }} className="center">
         <h1 style={{ marginLeft: "20px" }}>Login</h1>
-        <form>
+        <form style={{}}>
           <div style={{ marginLeft: "20px" }} className="inputbox">
             <input ref={emailRef} type="text" required="required"></input>
             <span>Email</span>
@@ -56,7 +59,10 @@ const LoginForm = () => {
             ></input>
             <span>Senha</span>
           </div>
-          <div style={{ marginLeft: "20px", width:"80%" }} className="inputbox">
+          <div
+            style={{ marginLeft: "20px", width: "60%" }}
+            className="inputbox"
+          >
             <input onClick={singIn} type="submit" value="Enviar"></input>
           </div>
           <div style={{ marginLeft: "20px" }}>

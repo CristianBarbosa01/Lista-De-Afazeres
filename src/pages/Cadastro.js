@@ -1,5 +1,6 @@
 import { auth, database } from "../firebase";
 import React, { useRef } from "react";
+import animado from "../image/animado.jpg";
 import("./cad.css");
 
 const Cadastro = () => {
@@ -39,13 +40,14 @@ const Cadastro = () => {
         justifyContent: "center",
       }}
     >
-      <div className="center2">
+      <img style={{ height: "100vh", width: "100vw" }} src={animado}></img>
+      <div style={{ marginTop: 100 }} className="center2">
         <h1 className="nome" style={{ marginLeft: "20px" }}>
           Cadastro
         </h1>
         <form>
           <div
-            style={{ marginLeft: "20px", marginTop: "-20px" }}
+            style={{ marginLeft: "20px", width: "17vw" }}
             className="inputbox2"
           >
             <input type="text" ref={nomeRef} required="required" />
@@ -53,7 +55,7 @@ const Cadastro = () => {
           </div>
 
           <div
-            style={{ marginLeft: "20px", marginTop: "-20px" }}
+            style={{ marginLeft: "20px", marginTop: "-20px", width: "17vw" }}
             className="inputbox2"
           >
             <input type="text" ref={emailRef} required="required" />
@@ -61,26 +63,32 @@ const Cadastro = () => {
           </div>
 
           <div
-            style={{ marginLeft: "20px", marginTop: "-20px" }}
+            style={{ marginLeft: "20px", marginTop: "-20px", width: "17vw" }}
             className="inputbox2"
           >
             <input type="password" ref={passwordRef} required="required" />
             <span>Senha</span>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              width: "22vw",
+            }}
+          >
             <div
-              style={{ width: "120px", marginTop: "-20px" }}
+              style={{ width: "100%", marginTop: "-20px" }}
               className="inputbox3"
             >
-              <button type="submit" style={{ backgroundColor: "dodgerblue" }}>
+              <button
+                type="submit"
+                style={{ backgroundColor: "dodgerblue", marginLeft: "35px" }}
+              >
                 <a href="/">Voltar</a>
               </button>
             </div>
-            <div
-              style={{ width: "120px", marginTop: "-20px" }}
-              className="inputbox2"
-            >
+            <div style={{ marginTop: "-20px" }} className="inputbox2">
               <button
                 onClick={singUp}
                 type="submit"
