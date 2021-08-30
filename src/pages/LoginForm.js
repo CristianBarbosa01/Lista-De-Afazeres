@@ -26,11 +26,19 @@ const LoginForm = () => {
         window.location.href = "/Home";
       })
       .catch((e) => {
-        console.log(
-          e?.code === "auth/user-not-found"
-            ? alert("Usuário não encontrado")
-            : alert(e?.message)
-        );
+        switch (e?.code) {
+          case "auth/user-not-found":
+            alert("Usuário não encontrado");
+            break;
+          case "auth/too-many-requests":
+            alert("Muitas tentativas, tente de novo mais tarde");
+            break;
+          case "auth/wrong-password":
+            alert("senha errada");
+            break;
+          default:
+            alert(e?.message);
+        }
       });
   };
 
