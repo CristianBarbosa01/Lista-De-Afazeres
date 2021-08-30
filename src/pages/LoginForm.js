@@ -71,7 +71,7 @@ const LoginForm = () => {
             style={{ marginLeft: "20px", width: "60%" }}
             className="inputbox"
           >
-            <input onClick={singIn} type="submit" value="Enviar"></input>
+            <input style={{cursor:'pointer'}} onClick={singIn} type="submit" value="Enviar"></input>
           </div>
           <div style={{ marginLeft: "20px" }}>
             <p>

@@ -83,7 +83,7 @@ const Cadastro = () => {
             >
               <button
                 onClick={() => (window.location.href = "/")}
-                style={{ backgroundColor: "dodgerblue", marginLeft: "35px" }}
+                style={{ backgroundColor: "dodgerblue", marginLeft: "35px", cursor:'pointer' }}
               >
                 <p>Voltar</p>
               </button>
