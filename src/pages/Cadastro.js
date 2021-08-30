@@ -82,10 +82,10 @@ const Cadastro = () => {
               className="inputbox3"
             >
               <button
-                type="submit"
+                onClick={() => (window.location.href = "/")}
                 style={{ backgroundColor: "dodgerblue", marginLeft: "35px" }}
               >
-                <a href="/">Voltar</a>
+                <p>Voltar</p>
               </button>
             </div>
             <div style={{ marginTop: "-20px" }} className="inputbox2">
@@ -95,7 +95,7 @@ const Cadastro = () => {
                 value="Enviar"
                 style={{ cursor: "pointer" }}
               >
-                <a>Enviar</a>
+                <p>Enviar</p>
               </button>
             </div>
           </div>

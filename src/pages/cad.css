@@ -89,7 +89,7 @@ button {
   background: linear-gradient(45deg, rgb(14, 63, 197), dodgerblue);
 }
 
-button a {
+button p {
   font-size: 20px;
   text-decoration: none;
   color: #fff;
